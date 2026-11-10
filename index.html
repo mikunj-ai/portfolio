@@ -163,6 +163,9 @@ footer a{font-family:var(--disp);font-weight:700;color:var(--ink)}
 .ntools{margin-top:14px;font-size:14px;color:var(--muted)}
 .ntools b{color:var(--ink);font-family:var(--disp)}
 .zero{display:inline-block;background:var(--yellow);border:2px solid var(--ink);border-radius:8px;padding:1px 8px;font-family:var(--disp);font-weight:800;color:var(--ink)}
+.nlead{font-size:15.5px;color:var(--muted);margin-top:2px}
+.nvid{display:flex;align-items:center;justify-content:center;touch-action:auto}
+.nvid video{width:100%;max-height:400px;display:block;background:#0e0e0e}
 @media (max-width:600px){.nslide{height:260px}}
 </style>
 </head>
@@ -189,8 +192,8 @@ footer a{font-family:var(--disp);font-weight:700;color:var(--ink)}
 
 <section class="sec newsec" id="new"><div class="wrap">
   <span class="kicker newflag"><span class="nd"></span>New this month</span>
-  <h2>Reels Studio — News-to-Reel Automation</h2>
-  <p class="sub">Turns fresh news into ready-to-post reels. <span class="zero">Runs on zero AI token cost.</span></p>
+  <h2>Fresh builds this month.</h2>
+  <p class="sub">Two new systems, shipped and running. Swipe, watch, and see what they do.</p>
   <div class="showcase nshow">
     <div class="stage">
       <span class="badge" style="background:var(--coral)">New</span>
@@ -202,6 +205,7 @@ footer a{font-family:var(--disp);font-weight:700;color:var(--ink)}
       <div class="num">Swipe the screenshots &#8594;</div>
       <h3 style="color:var(--coral)">Reels Studio</h3>
       <span class="who" style="background:var(--coral);color:#fff">Creators, agencies &amp; brands</span>
+      <p class="nlead">Turns fresh news into ready-to-post reels. <span class="zero">Runs on zero AI token cost.</span></p>
       <ul class="nlist">
         <li><b>Finds news:</b> pulls stories from RSS feeds and scores each one out of 100</li>
         <li><b>Writes scripts:</b> pick a story and get a full script with hook, caption and hashtags</li>
@@ -214,6 +218,26 @@ footer a{font-family:var(--disp);font-weight:700;color:var(--ink)}
       </ul>
       <p class="ntools"><b>Tools:</b> RSS &middot; Postiz &middot; Instagram</p>
       <div class="acts"><a class="live" href="https://www.instagram.com/reel/Dfj6QcQiLTL/" target="_blank" rel="noopener"><span class="ld"></span>Check Live Reel &#8599;</a></div>
+    </div>
+  </div>
+  <div class="showcase nshow">
+    <div class="stage">
+      <span class="badge" style="background:var(--blue);color:#fff">New</span>
+      <div class="ncar nvid"><video src="img/productspy.mp4" autoplay muted loop playsinline controls preload="metadata"></video></div>
+      <div class="ncap">Demo &middot; product link in, matching videos out</div>
+    </div>
+    <div class="info">
+      <div class="num">Watch the demo &#8592;</div>
+      <h3 style="color:var(--blue)">ProductSpy</h3>
+      <span class="who" style="background:var(--blue);color:#fff">E-commerce &amp; D2C brands</span>
+      <p class="nlead">Paste a product link or upload a photo, and it finds every video of that product across social media.</p>
+      <ul class="nlist">
+        <li><b>Reads the product:</b> AI pulls the type, colour, material, shape and any text on the product</li>
+        <li><b>Searches everywhere:</b> finds matching videos on Instagram, Meta Ads and TikTok</li>
+        <li><b>Scores every match:</b> each video gets a match score, with filters for Match, Maybe and No match</li>
+        <li><b>Finds winning ads:</b> sorts by the longest-running ads, so you can see what's working</li>
+        <li><b>Shortlist &amp; export:</b> save the best videos and export them to Google Sheets or CSV</li>
+      </ul>
     </div>
   </div>
 </div></section>
