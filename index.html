@@ -143,6 +143,27 @@ footer a{font-family:var(--disp);font-weight:700;color:var(--ink)}
 @media (max-width:900px){.showcase{grid-template-columns:1fr}.stage{border-right:none;border-bottom:2px solid var(--line)}.grid{grid-template-columns:1fr 1fr}.blocks{grid-template-columns:1fr 1fr}}
 @media (max-width:600px){.wrap{padding:0 18px}.grid{grid-template-columns:1fr}.blocks{grid-template-columns:1fr}.block:nth-child(odd),.block:nth-child(even){border-right:none}.sec{padding:48px 0}.contact{padding:38px 24px}}
 :focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+
+/* NEW THIS MONTH */
+.newsec{padding-bottom:20px}
+.newflag{display:inline-flex;align-items:center;gap:8px;background:var(--coral);color:#fff}
+.newflag .nd{width:8px;height:8px;border-radius:50%;background:#fff;animation:blip 1.6s infinite}
+.nshow{margin-top:30px}
+.ncar{width:100%;overflow:hidden;border:2px solid #2a2a2a;border-radius:10px;background:#0e0e0e;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.ntrack{display:flex;transition:transform .5s cubic-bezier(.22,.8,.3,1);will-change:transform}
+.ntrack.drag{transition:none}
+.nslide{flex:0 0 100%;display:flex;align-items:center;justify-content:center;height:400px;padding:6px}
+.nslide img{max-width:100%;max-height:100%;object-fit:contain;cursor:zoom-in;pointer-events:auto;-webkit-user-drag:none}
+.ncap{font-family:var(--disp);font-weight:700;font-size:13px;color:#e8e8e8;align-self:flex-start}
+.ndots{display:flex;gap:7px;justify-content:center}
+.ndots .dot{border-color:#e8e8e8}
+.ndots .dot.on{background:#e8e8e8}
+.nlist{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:7px;font-size:15px;color:var(--muted);line-height:1.5}
+.nlist b{color:var(--ink);font-family:var(--disp)}
+.ntools{margin-top:14px;font-size:14px;color:var(--muted)}
+.ntools b{color:var(--ink);font-family:var(--disp)}
+.zero{display:inline-block;background:var(--yellow);border:2px solid var(--ink);border-radius:8px;padding:1px 8px;font-family:var(--disp);font-weight:800;color:var(--ink)}
+@media (max-width:600px){.nslide{height:260px}}
 </style>
 </head>
 <body>
@@ -165,6 +186,37 @@ footer a{font-family:var(--disp);font-weight:700;color:var(--ink)}
 </div></header>
 
 <div class="ticker"><div class="ticker-track" id="ticker"></div></div>
+
+<section class="sec newsec" id="new"><div class="wrap">
+  <span class="kicker newflag"><span class="nd"></span>New this month</span>
+  <h2>Reels Studio — News-to-Reel Automation</h2>
+  <p class="sub">Turns fresh news into ready-to-post reels. <span class="zero">Runs on zero AI token cost.</span></p>
+  <div class="showcase nshow">
+    <div class="stage">
+      <span class="badge" style="background:var(--coral)">New</span>
+      <div class="ncar" id="ncar"><div class="ntrack" id="ntrack"></div></div>
+      <div class="ncap" id="ncap"></div>
+      <div class="ndots" id="ndots"></div>
+    </div>
+    <div class="info">
+      <div class="num">Swipe the screenshots &#8594;</div>
+      <h3 style="color:var(--coral)">Reels Studio</h3>
+      <span class="who" style="background:var(--coral);color:#fff">Creators, agencies &amp; brands</span>
+      <ul class="nlist">
+        <li><b>Finds news:</b> pulls stories from RSS feeds and scores each one out of 100</li>
+        <li><b>Writes scripts:</b> pick a story and get a full script with hook, caption and hashtags</li>
+        <li><b>You approve:</b> edit, rewrite or approve every script</li>
+        <li><b>Makes the video:</b> renders it automatically with brand templates</li>
+        <li><b>Client guide:</b> creates a guide to send to the customer</li>
+        <li><b>Auto-posts:</b> one reel a day, best score first, scheduled through Postiz</li>
+        <li><b>Comment &#8594; DM:</b> commenters get the details in their DMs automatically</li>
+        <li><b>Multi-brand:</b> separate templates and channels for each brand</li>
+      </ul>
+      <p class="ntools"><b>Tools:</b> RSS &middot; Postiz &middot; Instagram</p>
+      <div class="acts"><a class="live" href="https://www.instagram.com/reel/Dfj6QcQiLTL/" target="_blank" rel="noopener"><span class="ld"></span>Check Live Reel &#8599;</a></div>
+    </div>
+  </div>
+</div></section>
 
 <section class="sec" id="work"><div class="wrap">
   <span class="kicker">The work</span>
@@ -366,6 +418,27 @@ $('grid').innerHTML = P.map((p,n)=>`
     <div class="body"><h4>${p.t}</h4><p>${p.d.split('. ')[0]}.</p><span class="tag" style="background:${acc(n)}">${p.who}</span></div>
   </div>`).join('');
 $('grid').addEventListener('click',e=>{const c=e.target.closest('.gcard'); if(c){go(+c.dataset.n);start();$('work').scrollIntoView({behavior:'smooth'});}});
+
+// NEW THIS MONTH — swipe carousel with dots + auto-slide
+(function(){
+  const S=[["img/reels-1.jpg","News inbox — scored out of 100"],["img/reels-2.jpg","AI script — approve, edit or rewrite"],["img/reels-3.jpg","Queue — one reel a day, auto-post"],["img/reels-4.jpg","Brand templates"],["img/reels-5.jpg","Scheduled in Postiz"]];
+  const tr=$('ntrack'), car=$('ncar'), dots=$('ndots'); let k=0, t=null, hold=false;
+  tr.innerHTML=S.map((s,n)=>`<div class="nslide"><img src="${s[0]}" alt="${s[1]}" ${n?'loading="lazy"':''} draggable="false"></div>`).join('');
+  dots.innerHTML=S.map((_,n)=>`<button class="dot" data-n="${n}" aria-label="Screenshot ${n+1}"></button>`).join('');
+  function show(n){ k=(n+S.length)%S.length; tr.style.transform=`translateX(${-k*100}%)`; $('ncap').textContent=`${k+1}/${S.length} · ${S[k][1]}`; dots.querySelectorAll('.dot').forEach((d,m)=>d.classList.toggle('on',m===k)); }
+  function auto(){ clearInterval(t); if(hold||window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; t=setInterval(()=>{ if(!document.hidden) show(k+1); },3000); }
+  dots.addEventListener('click',e=>{const n=e.target.dataset.n; if(n!==undefined){show(+n);auto();}});
+  let x0=null, dx=0, moved=false;
+  car.addEventListener('pointerdown',e=>{ x0=e.clientX; dx=0; moved=false; hold=true; clearInterval(t); tr.classList.add('drag'); });
+  car.addEventListener('pointermove',e=>{ if(x0===null) return; dx=e.clientX-x0; if(Math.abs(dx)>6) moved=true; tr.style.transform=`translateX(calc(${-k*100}% + ${dx}px))`; });
+  function end(){ if(x0===null) return; tr.classList.remove('drag'); const w=car.clientWidth; if(dx<-w*0.15) show(k+1); else if(dx>w*0.15) show(k-1); else show(k); x0=null; }
+  car.addEventListener('pointerup',end); car.addEventListener('pointercancel',end);
+  car.addEventListener('pointerleave',()=>{ end(); hold=false; auto(); });
+  car.addEventListener('mouseenter',()=>{ hold=true; clearInterval(t); });
+  car.addEventListener('touchend',()=>{ hold=false; auto(); },{passive:true});
+  tr.addEventListener('click',e=>{ const im=e.target.closest('img'); if(im && !moved) openLB(im.src); });
+  show(0); auto();
+})();
 
 // custom arrow cursor
 const cur=$('cursor');
